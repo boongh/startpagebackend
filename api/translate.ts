@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     let end = new Date().getMilliseconds()
 
     response.timetook = end;
-    return new Response(JSON.stringify(response), { headers: { 'Access-Control-Allow-Origin': ALLOWED_ORIGIN },})
+    return new Response(JSON.stringify(response), { status: 200,  headers: { 'Access-Control-Allow-Origin': ALLOWED_ORIGIN },})
   } catch (error) {
     return new Response(JSON.stringify({
       error: 'Failed to parse request body',
