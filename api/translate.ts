@@ -2,7 +2,7 @@
 // since Vercel and other platforms handle environment variables automatically.
 import 'dotenv/config'
 
-console.log(process.env)
+const ALLOWED_ORIGIN = '*';
 
 const deepl = require('deepl-node');
 const authKey = process.env.DEEPL_API_KEY;
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
     let end = new Date().getMilliseconds()
 
     response.timetook = end;
-    return new Response(JSON.stringify(response))
+    return new Response(JSON.stringify(response), { headers: { 'Access-Control-Allow-Origin': ALLOWED_ORIGIN },})
   } catch (error) {
     return new Response(JSON.stringify({
       error: 'Failed to parse request body',
