@@ -29,6 +29,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
+    let start = new Date().getMilliseconds();
     if(!authKey) throw new Error("No Auth key");
     // Or parse as JSON if you expect JSON
     const body = await request.json();
@@ -37,6 +38,9 @@ export async function POST(request: Request) {
     // const body = await request.formData();
     const response = await translator.translateText(body.text, null, body.targetLang);
 
+    let end = new Date().getMilliseconds()
+
+    response.timetook = end;
     return new Response(JSON.stringify(response))
   } catch (error) {
     return new Response(JSON.stringify({
