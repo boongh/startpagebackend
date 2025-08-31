@@ -23,7 +23,7 @@ export async function GET(request: Request) {
     url: request.url,
     params: params
   }), {
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': ALLOWED_ORIGIN}
   });
 }
 
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
       message: error.message
     }), {
       status: 400,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': ALLOWED_ORIGIN}
     });
   }
 }
